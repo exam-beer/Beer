@@ -6,8 +6,8 @@ jobs:
   include:
   - stage: build docker image
     script:
-    - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
-    - docker build -t beer/application .
+    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    - docker build -t beer/application -f Dockerfile .
     - docker images
     - docker tag beer/application $DOCKER_USERNAME/beer/application
     - docker push $DOCKER_USERNAME/beer/application
