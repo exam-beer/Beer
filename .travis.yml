@@ -9,8 +9,8 @@ jobs:
     - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
     - docker build -t beer/application -f Dockerfile .
     - docker images
-    - docker tag beer/application $DOCKER_USERNAME/beer/application
-    - docker push $DOCKER_USERNAME/beer/application
+    - docker tag beer/application $DOCKER_USERNAME/beer
+    - docker push $DOCKER_USERNAME/beer
 env:
   global:
   - secure: pffccCZcuJO6T7zDRU+feGy953Tcjn+O3IUUL/8pucHxk5KVC5GMh9LfXcju+LJg0i70FN5PRqPZKx9sFkCaOxoyhIIFt9XC8TmJMTaIgb58nPERltz/2zoFZQSQAvQGEeQz6Is6ME8VuUqxpAeQVwAaY1nHfmGKMEPVZdfdRzHQ/ih7ZVIRvFiRTURa+7SekAeD9Y7/6e3bnq5vIt058o7Q9rAhOXs0eDSggZ8ebbhOvECJJt7FLlruxz7A/ogglwA7iW32pBWGoLM7syCBx80t3syyGsxl38+hrAgJ6HxDA+VaNaWrGxIER3ZCDIKstwH8u0PNhhmI1B54jLznvUF6katcUoopTw7UJR7Zyi9BpLGOSj1dmWaLtWa6wjLKVkbSqyS2Jty/g8RECTPGec4gYSmHBVEs+Ir1BhCRn4VL7HIb8drJ7actpDx7GZi3i31uX98zpAgc04342eRdjLnzvx6iK0W0Isc6+AOmkokeyByFqDV9u7SYczs71cjKTDj5xqNoS1WZ8qXscmmYxs12/XGy2d9xBEiz89PRhIAPCkbcoTKYGGcBa1FhawNrUePHJn9NMRVbOKoqkWThYm2ZdawR8/21BlpHCLROWrAepFiJ6fB0kyZCFPmgoX0zaCBne7eEjGQFbw7QkjVaZ6Opo2HOuwTdvdl9qLCdAv8=
