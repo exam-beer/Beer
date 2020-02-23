@@ -1,20 +1,13 @@
 language: java
-sudo: required
-dist: trusty
+
 services:
   - docker
+
 before_install:
-  - chmod +x mvnw
-after_success:
-  - docker login -u $DOCKERHUB_USERNAME_SECRET -p $DOCKERHUB_PASSWORD_SECRET
-  - export REPO=nusiliteh/fugl
-  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
-    ; fi`
-  - docker build -f Dockerfile -t $REPO .
-  - docker tag $REPO $REPO:$TAG
-  - docker tag $REPO $REPO:travis-$TRAVIS_BUILD_NUMBER
-  - docker push $DOCKERHUB_USERNAME_SECRET/fugl
-env:
-  global:
-    - secure: gJOWx9HrfsnXS+TkAd8W9xrikPOtnonaLSiiEsmCvy/jmOdjEwBb05Vqc7CBJzLbCc6BvUjCieMFIbaDGNKOF/jBdpA4uTecbtweTkACvfknOtcd8TQmHiCZZoVofEykHJNePO3y05GScT7291c7qBcSb7ODfybtoCRqfZjAskzz9V/Uksc6LfSqBQWYnGwqnWfQjcowhoicDjLrwyWVXVYLtx8+U0SOf8enG7d2TsIGu4MzKNwbp0gp8aA1g/klMb7A+LNOb7W1g16tyUIMxOl22GRYszaNmxXFZMeR+CB7/D9a70wbtLGvJR57Z+4MFwa+7O1CVO9etabjqC3vKGr8fSJCSpi4eT7+CjcXV8qHEN5GoI/bcJQW3YY4rF+5w9pVrseMgSC1jDBkYolIeZTiDXNoZNByaAJK07/ZH9f0DISH3FGxMc/sBhdUXtAthzWRa3P9BYMhNV4xIpWDG1S9fa/cjbb1+dM59M8eNci5fS+qQ4iHibC6mqM2RbvJZkd+54D8BzM/Qvwp+4IjCN8jT2u5rRt4PsqvSWgb7iA02nHdEfincxBC6o6Lo+7P24Gk72s+Ot9b8MTlfisHGNHu3nFviNap/BKDQLojvYTtukur2Aus0NILr4LZ+1jqRrGlfq4QRaaHzLyGhkJn4P2+KwIxGVrWW3Ap8bzXYxs=
-    - secure: g45ShVvhpcxtUZ3vQ9gAg0XN7sVHldRUg9fFpW1k29CJ5UZEIelmIUHOJUaGN23Cx/8029BVKFckPa4A1GVgMMrflD1rtLdDkvvGnIZSvOqS5FJBHwYhNeiNCpPOyEjHGehYhF1jpGV3+Q0XeujkRpvFjh89aceW16HTIjs53HepUU/B3z6jQQAaiYchOOdY949Tu1Xfl/ALn9pxqXL/E18Ly5yO5pxph7ArgbMDG4mkGxW5qDj2KMWfa2txvAQOn5XpSBaxmWXQlMCiOfjRH6SOibRj2xfZHPVNxsgWaZjFMTeOQ3eWxDwNvpzMilosyrRGp9hpfUJUV4rQwhyZd5g0W3s0RdwJ2XMSCuiLtbu8BwsehwmkklQL2AVElfTAZ6+6kLrU5Ln602AfZinIHsgjD/UNt1pI2BKJMWq207HDk8ikB1+5wI+cD7tSnVODfeP77Nc71tMfF/3QlukCrU9qoganbdZ0PDpLWjpZc6IHsm/MbPTRQi/A45Eo80olm+Vwnx6G+TMxzxy/y2EMCQL+ZySO7iYA3KRySNHMa/Rtw6XmnH6aRS6NZN6fs1tkjOq2VREA0/Eztcdbt5uLU3da3W8KO19xMdV77RYoMOa4gc1d7rjMQbyTGm9yhav+l0TiQ4D6ta+Rd2oPcipFl5AOUKNJwKdpm3bQ0MK/yA0=
+  - docker build -t beer-application .
+  - docker run -d -p 127.0.0.1:80:4567 beer-application /bin/sh -c "cd /root/beer; bundle exec foreman start;"
+  - docker ps -a
+  - docker run beer-applcation /bin/sh -c "cd /root/beer; bundle exec rake test"
+
+script:
+  - bundle exec rake test
