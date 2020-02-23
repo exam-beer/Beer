@@ -1,20 +1,17 @@
 language: java
 services: docker
-
 sudo: true
 dist: trusty
-
 jobs:
   include:
-    - stage: build docker image
-      script:
-        - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
-        - docker build Dockerfile -t beer/application .
-        - docker images
-        - docker tag beer/application $DOCKER_USERNAME/beer/application
-        - docker push $DOCKER_USERNAME/beer
-
+  - stage: build docker image
+    script:
+    - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
+    - docker build Dockerfile -t beer/application .
+    - docker images
+    - docker tag beer/application $DOCKER_USERNAME/beer/application
+    - docker push $DOCKER_USERNAME/beer
 env:
   global:
-    - secure: gJOWx9HrfsnXS+TkAd8W9xrikPOtnonaLSiiEsmCvy/jmOdjEwBb05Vqc7CBJzLbCc6BvUjCieMFIbaDGNKOF/jBdpA4uTecbtweTkACvfknOtcd8TQmHiCZZoVofEykHJNePO3y05GScT7291c7qBcSb7ODfybtoCRqfZjAskzz9V/Uksc6LfSqBQWYnGwqnWfQjcowhoicDjLrwyWVXVYLtx8+U0SOf8enG7d2TsIGu4MzKNwbp0gp8aA1g/klMb7A+LNOb7W1g16tyUIMxOl22GRYszaNmxXFZMeR+CB7/D9a70wbtLGvJR57Z+4MFwa+7O1CVO9etabjqC3vKGr8fSJCSpi4eT7+CjcXV8qHEN5GoI/bcJQW3YY4rF+5w9pVrseMgSC1jDBkYolIeZTiDXNoZNByaAJK07/ZH9f0DISH3FGxMc/sBhdUXtAthzWRa3P9BYMhNV4xIpWDG1S9fa/cjbb1+dM59M8eNci5fS+qQ4iHibC6mqM2RbvJZkd+54D8BzM/Qvwp+4IjCN8jT2u5rRt4PsqvSWgb7iA02nHdEfincxBC6o6Lo+7P24Gk72s+Ot9b8MTlfisHGNHu3nFviNap/BKDQLojvYTtukur2Aus0NILr4LZ+1jqRrGlfq4QRaaHzLyGhkJn4P2+KwIxGVrWW3Ap8bzXYxs=
-    - secure: g45ShVvhpcxtUZ3vQ9gAg0XN7sVHldRUg9fFpW1k29CJ5UZEIelmIUHOJUaGN23Cx/8029BVKFckPa4A1GVgMMrflD1rtLdDkvvGnIZSvOqS5FJBHwYhNeiNCpPOyEjHGehYhF1jpGV3+Q0XeujkRpvFjh89aceW16HTIjs53HepUU/B3z6jQQAaiYchOOdY949Tu1Xfl/ALn9pxqXL/E18Ly5yO5pxph7ArgbMDG4mkGxW5qDj2KMWfa2txvAQOn5XpSBaxmWXQlMCiOfjRH6SOibRj2xfZHPVNxsgWaZjFMTeOQ3eWxDwNvpzMilosyrRGp9hpfUJUV4rQwhyZd5g0W3s0RdwJ2XMSCuiLtbu8BwsehwmkklQL2AVElfTAZ6+6kLrU5Ln602AfZinIHsgjD/UNt1pI2BKJMWq207HDk8ikB1+5wI+cD7tSnVODfeP77Nc71tMfF/3QlukCrU9qoganbdZ0PDpLWjpZc6IHsm/MbPTRQi/A45Eo80olm+Vwnx6G+TMxzxy/y2EMCQL+ZySO7iYA3KRySNHMa/Rtw6XmnH6aRS6NZN6fs1tkjOq2VREA0/Eztcdbt5uLU3da3W8KO19xMdV77RYoMOa4gc1d7rjMQbyTGm9yhav+l0TiQ4D6ta+Rd2oPcipFl5AOUKNJwKdpm3bQ0MK/yA0=
+  - secure: pffccCZcuJO6T7zDRU+feGy953Tcjn+O3IUUL/8pucHxk5KVC5GMh9LfXcju+LJg0i70FN5PRqPZKx9sFkCaOxoyhIIFt9XC8TmJMTaIgb58nPERltz/2zoFZQSQAvQGEeQz6Is6ME8VuUqxpAeQVwAaY1nHfmGKMEPVZdfdRzHQ/ih7ZVIRvFiRTURa+7SekAeD9Y7/6e3bnq5vIt058o7Q9rAhOXs0eDSggZ8ebbhOvECJJt7FLlruxz7A/ogglwA7iW32pBWGoLM7syCBx80t3syyGsxl38+hrAgJ6HxDA+VaNaWrGxIER3ZCDIKstwH8u0PNhhmI1B54jLznvUF6katcUoopTw7UJR7Zyi9BpLGOSj1dmWaLtWa6wjLKVkbSqyS2Jty/g8RECTPGec4gYSmHBVEs+Ir1BhCRn4VL7HIb8drJ7actpDx7GZi3i31uX98zpAgc04342eRdjLnzvx6iK0W0Isc6+AOmkokeyByFqDV9u7SYczs71cjKTDj5xqNoS1WZ8qXscmmYxs12/XGy2d9xBEiz89PRhIAPCkbcoTKYGGcBa1FhawNrUePHJn9NMRVbOKoqkWThYm2ZdawR8/21BlpHCLROWrAepFiJ6fB0kyZCFPmgoX0zaCBne7eEjGQFbw7QkjVaZ6Opo2HOuwTdvdl9qLCdAv8=
+  - secure: qLgEJgjlXlNaP8UZ5RyJknTRCxiDX0fwrMQWj48mw/2kVSsxfx06cuRWSSZmKgkS0k2u3sfMxo7OrsbmfDKx6VBOQbYpN2HX1OrFLDgYYwqIbYmyXAvTBtSE5KLyVv7O+wcX9ln7g+hDKeOUtAscy6hQrTRGQbenljUNZxGR7XvAkyb43V7RXNcKfu8+B4/8dYVCf0cgQnNLZx58BWpBlEHroQL5x2dJ1isPMetcdffBr0h1Hjbr3472M/3OeQk7+6hBqvCYR+fAdv/1sLri8iRbhfwXsnoAzlZIQ6pHL9GZOx6QBrntCerf79lzz+DJo/zZx1RJ5g7+J6X3MmQW4DafWsucRw2KkAxXyfhW3/5GguWRizyROrl3Mf5h2ViU/EPx5tZ+5tiauZQFEaxisznQo05t8dTQ+dT8iMAp753puquaXLpjUzC4SIjw2gi+p0xSgyFV/7Uzln6zvKoiEXuciIz3g+w6X/ubgM4TW70wlH3c7pundkYKv8WsZJ2uUk8WpdM65DcZsdw5N10aTiu5D9dZcjn3muXdwvK/Dz7x7kPZAu03g1Sn4nW7Q+w14hwPD7kPjDeThtZ7TaZ0QKDA+aZZgdSCf5KnnbJaJ5EtYcuuTcuKjPirR/2PqzSZq/Z7c5BZTVD0vOh/d47OZfapH2r2n0doHZD6EaS1gw4=
