@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/exam-beer/beer.svg?branch=master)](https://travis-ci.org/exam-beer/beer)
-# beer
+# Beer
 Dette er min eksamensoppgave i faget DevOps PGR301
 Den inneholder en spring applikasjon som handler om øl.
 Du kan lage øl og se på øl, til og med slette øl. 
